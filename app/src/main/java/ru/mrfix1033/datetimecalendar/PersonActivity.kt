@@ -1,6 +1,8 @@
 package ru.mrfix1033.datetimecalendar
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -8,9 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.util.Calendar
 import java.util.Date
 
 class PersonActivity : AppCompatActivity() {
@@ -35,5 +34,15 @@ class PersonActivity : AppCompatActivity() {
             "Возраст: ${(Date().time - person.birthMillis) / 31536000000}; " +
                     "Дней до ДР: ${(31536000000 - (Date().time - person.birthMillis) % 31536000000) / 86400000}"
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menuItemExit) finishAffinity()
+        return super.onOptionsItemSelected(item)
     }
 }
